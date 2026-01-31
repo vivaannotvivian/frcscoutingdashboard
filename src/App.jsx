@@ -79,7 +79,7 @@ function MainLayout() {
 
   return (
     <ScoutProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/frcscoutingdashboard">
         <CurrentView />
       </BrowserRouter>
     </ScoutProvider>
