@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: window.location.origin
+                redirectTo: 'https://vivaannotvivian.github.io/frcscoutingdashboard'
             }
         });
         if (error) throw error;
