@@ -289,6 +289,17 @@ export function ScoutProvider({ children }) {
         return true;
     };
 
+    const leaveSession = () => {
+        if (channelRef.current) {
+            supabase.removeChannel(channelRef.current);
+            channelRef.current = null;
+        }
+        setIsOnline(false);
+        setSessionKey(null);
+        setSessionOwner(null);
+        setRemoteDragState({});
+    };
+
     const broadcastDrag = (teamId, isDragging) => {
         if (channelRef.current && isOnline) {
             channelRef.current.send({
@@ -333,7 +344,7 @@ export function ScoutProvider({ children }) {
         <ScoutContext.Provider value={{
             eventCode, setEventCode,
             allianceData, setTiers, updateTierInfo, addTeamToTier,
-            createSession, joinSession, loadSessions, saveSession,
+            createSession, joinSession, leaveSession, loadSessions, saveSession,
             shareSession, getSharedUsers, sessionOwner,
             sessionKey, sessionName, setSessionName, isOnline, isSaving,
             tabs, activeTabId, setActiveTabId, addTab, closeTab, reorderTabs,

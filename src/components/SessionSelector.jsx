@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useScout } from '../context/ScoutContext';
 import SessionList from '../components/SessionList';
 
-export default function SessionSelector({ onSessionSelected }) {
+export default function SessionSelector({ onSessionSelected, onGoBack }) {
     const { createSession } = useScout();
     const [sessionName, setSessionName] = useState('New Session');
     const [view, setView] = useState('menu'); // 'menu', 'new', 'load'
@@ -68,6 +68,17 @@ export default function SessionSelector({ onSessionSelected }) {
     // Menu view
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', padding: '4rem 2rem' }}>
+            {onGoBack && (
+                <div style={{ alignSelf: 'flex-start', width: '100%', maxWidth: '400px' }}>
+                    <button
+                        className="btn"
+                        style={{ background: 'var(--accent-primary)' }}
+                        onClick={onGoBack}
+                    >
+                        ← Back to Menu
+                    </button>
+                </div>
+            )}
             <div style={{ textAlign: 'center' }}>
                 <h1 style={{ marginBottom: '0.5rem' }}>Alliance Selection</h1>
                 <p style={{ color: 'var(--text-secondary)' }}>Choose an option to get started</p>
