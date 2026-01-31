@@ -150,7 +150,7 @@ function DroppableContainer({ id, items, tier, updateTierInfo, onContextMenu, re
 }
 
 export default function AllianceSelection() {
-    const { eventCode, setEventCode, allianceData, setTiers, updateTierInfo, createSession, joinSession, leaveSession, sessionKey, sessionName, setSessionName, isOnline, isSaving, saveSession, sessionOwner, broadcastDrag, remoteDragState, tabs, setActiveTabId, hasJoinedSession } = useScout();
+    const { eventCode, setEventCode, allianceData, setTiers, updateTierInfo, createSession, joinSession, leaveSession, sessionKey, sessionName, setSessionName, isOnline, isSaving, saveSession, sessionOwner, broadcastDrag, remoteDragState, tabs, setActiveTabId } = useScout();
     const { user } = useAuth();
     const [activeId, setActiveId] = useState(null);
     const [localEventCode, setLocalEventCode] = useState(eventCode);
@@ -351,11 +351,7 @@ export default function AllianceSelection() {
     return (
         <div className="container" style={{ padding: '2rem', maxWidth: '1800px' }}>
             <h1 style={{ marginBottom: '1.5rem' }}>Alliance Selection Board</h1>
-            
-            {/* Only show Back to Menu button if user has joined a session */}
-            {hasJoinedSession && (
-                <button className="btn" style={{ marginBottom: '1rem', background: 'var(--accent-primary)' }} onClick={handleGoBack}>← Back to Menu</button>
-            )}
+            <button className="btn" style={{ marginBottom: '1rem', background: 'var(--accent-primary)' }} onClick={handleGoBack}>← Back to Menu</button>
 
             <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
