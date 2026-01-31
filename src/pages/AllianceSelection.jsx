@@ -156,10 +156,18 @@ export default function AllianceSelection() {
     const [localEventCode, setLocalEventCode] = useState(eventCode);
     const [contextMenu, setContextMenu] = useState(null);
     const [showShare, setShowShare] = useState(false);
+    const [hasEverJoined, setHasEverJoined] = useState(false);
 
     useEffect(() => {
         setLocalEventCode(eventCode);
     }, [eventCode]);
+
+    // Track if user has ever been online in this session
+    useEffect(() => {
+        if (isOnline) {
+            setHasEverJoined(true);
+        }
+    }, [isOnline]);
 
     const sensors = useSensors(
         useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -248,6 +256,7 @@ export default function AllianceSelection() {
 
     const handleGoBack = () => {
         leaveSession();
+        setHasEverJoined(false);
     };
 
     const findContainer = (id) => {
@@ -351,7 +360,11 @@ export default function AllianceSelection() {
     return (
         <div className="container" style={{ padding: '2rem', maxWidth: '1800px' }}>
             <h1 style={{ marginBottom: '1.5rem' }}>Alliance Selection Board</h1>
-            <button className="btn" style={{ marginBottom: '1rem', background: 'var(--accent-primary)' }} onClick={handleGoBack}>← Back to Menu</button>
+            
+            {/* Only show Back to Menu if user has joined/created a session */}
+            {hasEverJoined && (
+                <button className="btn" style={{ marginBottom: '1rem', background: 'var(--accent-primary)' }} onClick={handleGoBack}>← Back to Menu</button>
+            )}
 
             <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>

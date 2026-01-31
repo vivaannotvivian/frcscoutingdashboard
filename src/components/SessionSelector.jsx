@@ -20,7 +20,7 @@ export default function SessionSelector({ onSessionSelected, onGoBack }) {
                 <div style={{ marginBottom: '1rem' }}>
                     <button
                         className="btn"
-                        style={{ background: 'var(--bg-secondary)' }}
+                        style={{ background: 'var(--accent-primary)' }}
                         onClick={() => setView('menu')}
                     >
                         ← Back
@@ -47,7 +47,7 @@ export default function SessionSelector({ onSessionSelected, onGoBack }) {
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                         <button
                             className="btn"
-                            style={{ flex: 1, background: 'var(--bg-secondary)' }}
+                            style={{ flex: 1, background: 'var(--accent-primary)' }}
                             onClick={() => setView('menu')}
                         >
                             Cancel
