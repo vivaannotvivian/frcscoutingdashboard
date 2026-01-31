@@ -352,7 +352,7 @@ export default function AllianceSelection() {
 
     // Show session selector if not online
     if (!isOnline) {
-        return <SessionSelector onSessionSelected={() => { }} onGoBack={handleGoBack} />;
+        return <SessionSelector onSessionSelected={() => { }} onGoBack={hasEverJoined ? handleGoBack : null} />;
     }
 
     const activeItem = activeId ? Object.values(allianceData).flatMap(t => t?.items || []).filter(i => i && i.id).find(i => i.id === activeId) : null;
