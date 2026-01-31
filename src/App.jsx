@@ -74,8 +74,8 @@ function MainLayout() {
 
   return (
     <ScoutProvider>
-      <BrowserRouter basename="/frcscoutingdashboard">
-        <CurrentView />
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <CurrentView/>
       </BrowserRouter>
     </ScoutProvider>
   );
