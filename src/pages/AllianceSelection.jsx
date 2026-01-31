@@ -150,7 +150,7 @@ function DroppableContainer({ id, items, tier, updateTierInfo, onContextMenu, re
 }
 
 export default function AllianceSelection() {
-    const { eventCode, setEventCode, allianceData, setTiers, updateTierInfo, createSession, joinSession, sessionKey, sessionName, setSessionName, isOnline, isSaving, saveSession, sessionOwner, broadcastDrag, remoteDragState } = useScout();
+    const { eventCode, setEventCode, allianceData, setTiers, updateTierInfo, createSession, joinSession, sessionKey, sessionName, setSessionName, isOnline, isSaving, saveSession, sessionOwner, broadcastDrag, remoteDragState, tabs, setActiveTabId } = useScout();
     const { user } = useAuth();
     const [activeId, setActiveId] = useState(null);
     const [localEventCode, setLocalEventCode] = useState(eventCode);
@@ -244,6 +244,13 @@ export default function AllianceSelection() {
     const handleOpenNewWindow = () => {
         const url = window.location.href;
         window.open(url, '_blank', 'width=1200,height=800');
+    };
+
+    const handleGoBack = () => {
+        const homeTab = tabs.find(tab => tab.type === 'HOME');
+        if (homeTab) {
+            setActiveTabId(homeTab.id);
+        }
     };
 
     const findContainer = (id) => {
@@ -347,6 +354,7 @@ export default function AllianceSelection() {
     return (
         <div className="container" style={{ padding: '2rem', maxWidth: '1800px' }}>
             <h1 style={{ marginBottom: '1.5rem' }}>Alliance Selection Board</h1>
+            <button className="btn" style={{ marginBottom: '1rem', background: 'var(--bg-secondary)' }} onClick={handleGoBack}>← Back to Menu</button>
 
             <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
