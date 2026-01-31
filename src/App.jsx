@@ -57,18 +57,13 @@ function AppContent() {
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function CurrentView() {
-  const isPopOut = window.location.pathname !== '/' && window.location.pathname !== '/index.html';
-
-  if (isPopOut) {
-    return (
-      <Routes>
-        <Route path="/alliance-selection" element={<AllianceSelection />} />
-        <Route path="/team/:teamKey" element={<TeamDetails />} />
-      </Routes>
-    );
-  }
-
-  return <AppContent />;
+  return (
+    <Routes>
+      <Route path="/" element={<AppContent />} />
+      <Route path="/alliance-selection" element={<AllianceSelection />} />
+      <Route path="/team/:teamKey" element={<TeamDetails />} />
+    </Routes>
+  );
 }
 
 function MainLayout() {
